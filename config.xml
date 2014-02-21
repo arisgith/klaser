@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "id.my.arisis"
+        versionCode = "1" 
+        version     = "1.0.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Klaser android Apps</name>
+
+    <description>
+        Masih Sangat Awal 
+    </description>
+
+    <author href="https://arisis.my.id" email="aris@arisis.my.id">
+        Aris Eko Priyanto
+    </author>
+
+</widget>
