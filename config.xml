@@ -3,11 +3,11 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "id.my.arisis"
         versionCode = "1" 
-        version     = "1.0.0" >
+        version     = "1.0.1" >
 
     <!-- versionCode is optional and Android only -->
 
-    <name>Klaser android Apps</name>
+    <name>Klaser Mubile</name>
 
     <description>
         Masih Sangat Awal 
