@@ -1,0 +1,29 @@
+
+sudo apt-get install git
+git config --global user.name "arisgith"
+git config --global user.email "aris.winchester@gmail.com"
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=3600'
+git clone https://github.com/arisgith/klaser.git
+cd ..
+git clone https://github.com/arisgith/klaser.git
+cd klaser/
+git remote add upstream https://github.com/arisgith/klaser.git
+git fetch upstream
+git push origin master
+git fetch upstream
+git merge upstream/master
+touch missme.txt
+git push origin master
+git init
+git add missme.txt 
+git commit -m 'firs commit'
+git remote add origin https://github.com/arisgith/klaser.git
+git push origin master
+git add 
+git add *
+git commit -m 'memasukan index.html beserta kawan-kawannya'
+git push origin master
+git add config.xml 
+git commit -m 'memasukan config.xml'
+git push origin master
