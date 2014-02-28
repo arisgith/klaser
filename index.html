@@ -12,6 +12,31 @@
 	<script src="./js/jquery.js"></script>
 	<script src="./_assets/js/index.js"></script>
 	<script src="./js/jquery.mobile-1.4.0.min.js"></script>
+	<!--INI BIAR BISA CLOSE DI ANDROID-->
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for device API libraries to load
+    //
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        // Register the event listener
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
+    // Handle the back button
+    //
+    function onBackKeyDown() {
+		 navigator.app.exitApp();
+    }
+
+    </script>
+	<!---->
 	<script>
 		$( document ).on( "pagecreate", "#demo-page", function() {
 
@@ -47,7 +72,7 @@
 	</style>
 </head>
 
-<body>
+<body onload="onLoad()">
 
 <div data-role="page" id="demo-page">
 
@@ -78,23 +103,39 @@
 
     	<p>Right push panel.</p>
 		<a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-right">Close</a>
-		<button onclick="return closet()">Keluar</button>
+		<a href="#" data-ajax="false" data-inset="true" class="ui-btn ui-mini ui-btn-icon-left ui-icon-delete">Keluar</a>
     </div><!-- /panel -->
 
 </div><!-- /page -->
 <script>
-	function closet(){
-		document.addEventListener("backbutton", function () { 
-			navigator.notification.confirm('Do you want to quit', onConfirmQuit,'QUIT TITLE','OK,Cancel' );
-		},true); 
-
-
-		function onConfirmQuit(button){
-			if(button == "1"){
-				navigator.app.exitApp(); 
+			//disable back button
+			window.onload = function () {
+				if (typeof history.pushState === "function") {
+					history.pushState("jibberish", null, null);
+					window.onpopstate = function () {
+						history.pushState('newjibberish', null, null);
+						// Handle the back (or forward) buttons here
+						// Will NOT handle refresh, use onbeforeunload for this.
+						//alert('back button was disable');
+					};
+				}
+				else {
+					var ignoreHashChange = true;
+					window.onhashchange = function () {
+						if (!ignoreHashChange) {
+							ignoreHashChange = true;
+							window.location.hash = Math.random();
+							// Detect and redirect change here
+							// Works in older FF and IE9
+							// * it does mess with your hash symbol (anchor?) pound sign
+							// delimiter on the end of the URL
+						}
+						else {
+							ignoreHashChange = false;   
+						}
+					};
+				}
 			}
-		}
-	}
-</script>
+		</script>
 </body>
 </html>
