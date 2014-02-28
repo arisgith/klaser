@@ -4,14 +4,25 @@
     <title>PhoneGap</title>
     </head>
 		<script type="text/javascript">
-			var ref = window.open(encodeURI(url), '_blank', options);
-			ref.addEventListener('loadstop', function(event) {        
-				if (event.url.match("mobile/close")) {
-					ref.close();
-				}
-			});
+			function closetan(){
+				window.close()
+			}
+			function AppCtrl($scope, $location) {
+				$scope.goHome = function () {
+
+					if ((window.location) && (window.location.hash) && (window.location.hash.indexOf('home') > 0)) {
+						navigator.app.exitApp();   // This will exit the application
+					}
+					else {
+						$location.path('/home');  // This will redirect the application to home page
+
+						if (!$scope.$$phase)
+							$scope.$apply();
+					}
+				}	
+			}
 		</script>
-    <body>
-       <a href="/mobile/close">Close</a>Click Me!
+    <body ng-controller="AppCtrl">
+       <button onclick="return closetan()">Close</button>
     </body>
 </html>
