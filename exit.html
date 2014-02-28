@@ -2,25 +2,9 @@
 <html>
   <head>
     <title>PhoneGap</title>
-
-        <script type="text/javascript" charset="utf-8" src="cordova-1.5.0.js"></script>      
-        <script type="text/javascript" charset="utf-8">
-
-            function onLoad()
-            {
-                  document.addEventListener("deviceready", onDeviceReady, true);
-            }
-
-            function exitFromApp()
-             {
-                navigator.app.exitApp();
-             }
-
-        </script>
-
     </head>
 
     <body onload="onLoad();">
-       <button name="buttonClick" onclick="exitFromApp()">Click Me!</button>
+       <a href="/mobile/close">Close</a>Click Me!
     </body>
 </html>
