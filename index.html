@@ -78,26 +78,23 @@
 
     	<p>Right push panel.</p>
 		<a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-right">Close</a>
-
+		<button onclick="return closet()">Keluar</button>
     </div><!-- /panel -->
 
 </div><!-- /page -->
 <script>
-	 document.addEventListener("backbutton", function () { 
-	  navigator.notification.confirm(
-				'Do you want to quit', 
-				onConfirmQuit, 
-				'QUIT TITLE', 
-				'OK,Cancel'  
-			);
-	}, true); 
+	function closet(){
+		document.addEventListener("backbutton", function () { 
+			navigator.notification.confirm('Do you want to quit', onConfirmQuit,'QUIT TITLE','OK,Cancel' );
+		},true); 
 
 
-    function onConfirmQuit(button){
-       if(button == "1"){
-		   navigator.app.exitApp(); 
+		function onConfirmQuit(button){
+			if(button == "1"){
+				navigator.app.exitApp(); 
+			}
 		}
-    }
+	}
 </script>
 </body>
 </html>
