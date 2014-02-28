@@ -3,8 +3,15 @@
   <head>
     <title>PhoneGap</title>
     </head>
-
-    <body onload="onLoad();">
+		<script type="text/javascript">
+			var ref = window.open(encodeURI(url), '_blank', options);
+			ref.addEventListener('loadstop', function(event) {        
+				if (event.url.match("mobile/close")) {
+					ref.close();
+				}
+			});
+		</script>
+    <body>
        <a href="/mobile/close">Close</a>Click Me!
     </body>
 </html>
