@@ -1,28 +1,33 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>PhoneGap</title>
-    </head>
-		<script type="text/javascript">
-			function closetan(){
-				window.close()
-			}
-			function AppCtrl($scope, $location) {
-				$scope.goHome = function () {
+    <title>Back Button Example</title>
 
-					if ((window.location) && (window.location.hash) && (window.location.hash.indexOf('home') > 0)) {
-						navigator.app.exitApp();   // This will exit the application
-					}
-					else {
-						$location.path('/home');  // This will redirect the application to home page
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
 
-						if (!$scope.$$phase)
-							$scope.$apply();
-					}
-				}	
-			}
-		</script>
-    <body ng-controller="AppCtrl">
-       <button onclick="return closetan()">Close</button>
-    </body>
+    // Wait for device API libraries to load
+    //
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        // Register the event listener
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
+    // Handle the back button
+    //
+    function onBackKeyDown() {
+		 navigator.app.exitApp();
+    }
+
+    </script>
+  </head>
+  <body onload="onLoad()">
+	  <button onclick="onBackKeyDown()">Keluar</button>
+  </body>
 </html>
