@@ -31,7 +31,6 @@
 		<script>
 		   $(document).ready(function(){
 			   $.ajax({
-				   //url: 'http://arisis.my.id/file/json/inside.u/?text=1&gambar=1&update=3',
 				   url: 'http://klas.or.id/mob/?text=1&gambar=1&update=3',
 				   dataType: 'jsonp',
 				   success: function(data){
@@ -40,10 +39,10 @@
 					   hargax = data.text;
 					   gambarx = data.gambar;
 					   if(gambarx == undefined){
-						   daftar1 = '<p>'+ namax + '</p><p>'+ hargax +'<p>';
+						   daftar1 = '<div class="ui-bar ui-bar-a ui-corner-all"><h3>'+ namax + '</h3></div><p>'+ hargax +'<p>';
 						}
 						else{
-							daftar1 = '<p>'+ namax + '</p><p>'+ hargax +'<p>'+'</p><p><img src="' + gambarx + '"width="400px" /></p>';
+							daftar1 = '<div class="ui-bar ui-bar-a ui-corner-all"><h3>'+ namax + '</h3></div><p><img src="' + gambarx + '"width="70%" style="display: block;margin-left: auto;margin-right: auto;"/></p>'+ hargax +'</p>';
 						}
 					  //alert(hargax);
 					   
@@ -75,15 +74,15 @@
 		<div data-role="page" id="demo-page">
 
 			<div data-role="header" data-theme="a">
-				<h1>Swipe left or right</h1>
+				<h1>Time Line KLAS</h1>
 				<a class="ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" href="#left-panel" data-role="button" role="button"></a>
 				<a class="ui-btn-right ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" href="#right-panel" data-role="button" role="button"></a>
-				<!--a href="#left-panel"  data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-bars"></a>
-				<a href="#right-panel" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-gear"></a-->
+				
 			</div><!-- /header -->
-
+			
 			<div role="main" class="ui-content">
-				<div id="KlasFeed">
+				<div class="ui-body ui-body-a ui-corner-all">
+					<div id="KlasFeed"></div>
 				</div>
 			</div><!-- /content -->
 
@@ -103,7 +102,7 @@
 			</div><!-- /panel right-->
 
 		</div><!-- /page -->
-		<script>
+		<!--script>
 					window.onload = function () {
 						if (typeof history.pushState === "function") {
 							history.pushState("jibberish", null, null);
@@ -131,6 +130,6 @@
 							};
 						}
 					}
-				</script>
+				</script-->
 	</body>
 </html>
