@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Open panel on swipe - jQuery Mobile Demos</title>
+		<link rel="shortcut icon" href="./favicon.ico">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+		<link rel="stylesheet" href="./css/themes/default/jquery.mobile-1.4.0.min.css">
+		<link rel="stylesheet" href="./_assets/css/jqm-demos.css">
+		<script src="./js/jquery.js"></script>
+		<script src="./_assets/js/index.js"></script>
+		<script src="./js/jquery.mobile-1.4.0.min.js"></script>
+		<script>
+			$( document ).on( "pagecreate", "#demo-page", function() {
+
+				$( document ).on( "swipeleft swiperight", "#demo-page", function( e ) {
+					// We check if there is no open panel on the page because otherwise
+					// a swipe to close the left panel would also open the right panel (and v.v.).
+					// We do this by checking the data that the framework stores on the page element (panel: open).
+					if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
+						if ( e.type === "swipeleft" ) {
+							$( "#right-panel" ).panel( "open" );
+						} else if ( e.type === "swiperight" ) {
+							$( "#left-panel" ).panel( "open" );
+						}
+					}
+				});
+			});
+		</script>
+		<script>
+		   $(document).ready(function(){
+			   $.ajax({
+				   url: 'http://klas.or.id/mob/?text=1&gambar=1&update=3',
+				   dataType: 'jsonp',
+				   success: function(data){
+					  var daftar1 = '';
+					   namax = data.update;
+					   hargax = data.text;
+					   gambarx = data.gambar;
+					   if(gambarx == undefined){
+						   daftar1 = '<div class="ui-bar ui-bar-a ui-corner-all"><h3>'+ namax + '</h3></div><p>'+ hargax +'<p>';
+						}
+						else{
+							daftar1 = '<div class="ui-bar ui-bar-a ui-corner-all"><h3>'+ namax + '</h3></div><p><img src="' + gambarx + '"width="70%" style="display: block;margin-left: auto;margin-right: auto;"/></p>'+ hargax +'</p>';
+						}
+					  //alert(hargax);
+					   
+					   $('#KlasFeed').html(daftar1);
+				   }
+			   });
+		   })
+	   </script>
+		<style>
+			/* Swipe works with mouse as well but often causes text selection. */
+			#demo-page * {
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+			}
+			/* Content styling. */
+			dl { font-family: "Times New Roman", Times, serif; padding: 1em; }
+			dt { font-size: 2em; font-weight: bold; }
+			dt span { font-size: .5em; color: #777; margin-left: .5em; }
+			dd { font-size: 1.25em;	margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px solid #eee; }
+			.back-btn { float: right; margin: 0 2em 1em 0; }
+		</style>
+	</head>
+
+	<body>
+
+		<div data-role="page" id="demo-page">
+
+			<div data-role="header" data-theme="a">
+				<h1>Time Line KLAS</h1>
+				<a class="ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" href="#left-panel" data-role="button" role="button"></a>
+				<a class="ui-btn-right ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" href="#right-panel" data-role="button" role="button"></a>
+				
+			</div><!-- /header -->
+			
+			<div role="main" class="ui-content">
+				<div class="ui-body ui-body-a ui-corner-all">
+					<div id="KlasFeed"></div>
+				</div>
+			</div><!-- /content -->
+
+			<div data-role="panel" id="left-panel" data-theme="a">
+
+				<p>Left reveal panel.</p>
+				<a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-right">Close</a>
+				<a href="home.html" data-ajax="false" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">Home</a>
+				<a href="exit.html" data-ajax="false" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">exit</a>
+			</div><!-- /panel left-->
+
+			<div data-role="panel" id="right-panel" data-display="push" data-position="right" data-theme="a">
+
+				<p>Right push panel.</p>
+				<a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-right">Close</a>
+
+			</div><!-- /panel right-->
+
+		</div><!-- /page -->
+		<!--script>
+					window.onload = function () {
+						if (typeof history.pushState === "function") {
+							history.pushState("jibberish", null, null);
+							window.onpopstate = function () {
+								history.pushState('newjibberish', null, null);
+								// Handle the back (or forward) buttons here
+								// Will NOT handle refresh, use onbeforeunload for this.
+								//alert('back button was disable');
+							};
+						}
+						else {
+							var ignoreHashChange = true;
+							window.onhashchange = function () {
+								if (!ignoreHashChange) {
+									ignoreHashChange = true;
+									window.location.hash = Math.random();
+									// Detect and redirect change here
+									// Works in older FF and IE9
+									// * it does mess with your hash symbol (anchor?) pound sign
+									// delimiter on the end of the URL
+								}
+								else {
+									ignoreHashChange = false;   
+								}
+							};
+						}
+					}
+				</script-->
+	</body>
+</html>

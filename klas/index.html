@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Welcome!</title>
+		<style type="text/CSS">
+			body {background-color: #DCDCDC}
+		</style>
+		<script type="text/javascript">
+			window.onload=timeout;
+			function timeout(){
+			window.setTimeout("redirect()",5000)}
+
+			function redirect(){
+			window.location="home.html"
+			return}
+		</script>
+	</head>
+	<!--body onload="timeout()"-->
+	<body onload="timer()">
+		<button onclick='timer()'>Back</button>
+		<script>
+			var count=0;
+			var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+
+			function timer()
+			{
+				
+				if (count == 0)
+				{
+					alert('press back again');
+					count = 3
+					//clearInterval(counter);
+					//return;
+				}
+				else{
+					count=count-1;
+					clearInterval(counter);
+					document.getElementById("timer").innerHTML=count + " secs"; // watch for spelling
+					return;
+				}
+			}
+		</script>
+		<div id="timer"></div>
+	</body>
+</html>
