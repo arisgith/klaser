@@ -33,6 +33,21 @@
 			   $.ajax({
 				   url: 'http://klas.or.id/mob/?text=1&gambar=1&update=3',
 				   dataType: 'jsonp',
+				   timeout:1000,
+					statusCode: {
+						200: function (response) {
+							//alert('Working!');
+							return true
+						},
+						400: function (response) {
+							alert('Not working!');
+						},
+						0: function (response) {
+							//alert('Not working 2!');
+							$('#KlasFeed').html('<center><h3>Periksa Koneksi Internet Perangkat Anda</h3></center>');
+							
+						}              
+					},
 				   success: function(data){
 					  var daftar1 = '';
 					   namax = data.update;
