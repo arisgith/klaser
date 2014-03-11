@@ -1,142 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width"/>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Open panel on swipe - jQuery Mobile Demos</title>
-	<link rel="shortcut icon" href="./favicon.ico">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-	<link rel="stylesheet" href="./css/themes/default/jquery.mobile-1.4.0.min.css">
-	<link rel="stylesheet" href="./_assets/css/jqm-demos.css">
-	<script src="./js/jquery.js"></script>
-	<script src="./_assets/js/index.js"></script>
-	<script src="./js/jquery.mobile-1.4.0.min.js"></script>
-	<!--INI BIAR BISA CLOSE DI ANDROID-->
-	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">
+		<!-- BlankOn tambahan CSS -->
+		<!--link rel="stylesheet" href="style.css"/-->
+		<!-- Bootstrap core CSS -->
+		<link href="css/splash/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Custom styles for this template -->
+		<style>
+			.jumbotronku{
+				width:100%;
+				padding:30px;
+				margin-bottom:30px;
+				color:inherit;
+				background-color:#fafafa;
+				
+			}
+			.idn{
+				opacity:0.3;
+				position:fixed;
+				z-index:1;
+				top:10%;
+			}
+			.navbar-static-top {
+				margin-bottom: 19px;
+			}
+			.spinner {
+				width: 64px;
+				height: 42px;
+				background-image:url('logoklas.png' );
+				background-repeat:no-repeat;
 
-    // Wait for device API libraries to load
-    //
-    function onLoad() {
-        document.addEventListener("deviceready", onDeviceReady, false);
-    }
+				/*margin: 100px auto;*/
+				-webkit-animation: rotateplane 2.2s infinite ease-in-out;
+				animation: rotateplane 1.2s infinite ease-in-out;
+			}
 
-    // device APIs are available
-    //
-    function onDeviceReady() {
-        // Register the event listener
-        document.addEventListener("backbutton", onBackKeyDown, false);
-    }
+			@-webkit-keyframes rotateplane {
+				0% { -webkit-transform: perspective(120px) }
+				50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+				100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+			}
 
-    // Handle the back button
-    //
-    function onBackKeyDown() {
-		 navigator.app.exitApp();
-    }
-
-    </script>
-	<!---->
-	<script>
-		$( document ).on( "pagecreate", "#demo-page", function() {
-
-			$( document ).on( "swipeleft swiperight", "#demo-page", function( e ) {
-				// We check if there is no open panel on the page because otherwise
-				// a swipe to close the left panel would also open the right panel (and v.v.).
-				// We do this by checking the data that the framework stores on the page element (panel: open).
-				if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
-					if ( e.type === "swipeleft" ) {
-						$( "#right-panel" ).panel( "open" );
-					} else if ( e.type === "swiperight" ) {
-						$( "#left-panel" ).panel( "open" );
-					}
-				}
-			});
-		});
-    </script>
-	<style>
-		/* Swipe works with mouse as well but often causes text selection. */
-		#demo-page * {
-			-webkit-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			-o-user-select: none;
-			user-select: none;
-		}
-		/* Content styling. */
-		dl { font-family: "Times New Roman", Times, serif; padding: 1em; }
-		dt { font-size: 2em; font-weight: bold; }
-		dt span { font-size: .5em; color: #777; margin-left: .5em; }
-		dd { font-size: 1.25em;	margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px solid #eee; }
-		.back-btn { float: right; margin: 0 2em 1em 0; }
-	</style>
-</head>
-
-<body onload="onLoad()">
-
-<div data-role="page" id="demo-page">
-
-    <div data-role="header" data-theme="b">
-        <h1>Swipe left or right</h1>
-		<a href="#left-panel" data-icon="carat-r" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Open left panel</a>
-		<a href="#right-panel" data-icon="carat-l" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Open right panel</a>
-    </div><!-- /header -->
-
-    <div role="main" class="ui-content">
-
-    	<dl>
-            <dt>Swipe <span>verb</span></dt>
-            <dd><b>1.</b> to strike or move with a sweeping motion</dd>
-        </dl>
-
-    </div><!-- /content -->
-
-    <div data-role="panel" id="left-panel" data-theme="A">
-
-    	<p>Left reveal panel.</p>
-		<a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-right">Close</a>
-		<a href="timeline.html" data-ajax="false" data-inset="true" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">News</a>
-		<a href="ngetoast.html" data-ajax="false" data-inset="true" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">Ngetoast</a>
-
-    </div><!-- /panel -->
-
-    <div data-role="panel" id="right-panel" data-display="push" data-position="right" data-theme="b">
-
-    	<p>Right push panel.</p>
-		<a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-right">Close</a>
-		<button onclick="onBackKeyDown()" class="ui-btn ui-mini ui-btn-icon-left ui-icon-delete">Keluar</button>
-    </div><!-- /panel -->
-
-</div><!-- /page -->
-<script>
-			//disable back button
-			window.onload = function () {
-				if (typeof history.pushState === "function") {
-					history.pushState("jibberish", null, null);
-					window.onpopstate = function () {
-						history.pushState('newjibberish', null, null);
-						// Handle the back (or forward) buttons here
-						// Will NOT handle refresh, use onbeforeunload for this.
-						//alert('back button was disable');
-					};
-				}
-				else {
-					var ignoreHashChange = true;
-					window.onhashchange = function () {
-						if (!ignoreHashChange) {
-							ignoreHashChange = true;
-							window.location.hash = Math.random();
-							// Detect and redirect change here
-							// Works in older FF and IE9
-							// * it does mess with your hash symbol (anchor?) pound sign
-							// delimiter on the end of the URL
-						}
-						else {
-							ignoreHashChange = false;   
-						}
-					};
+			@keyframes rotateplane {
+				0% { 
+					transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+					-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+				} 
+				50% { 
+					transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+					-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+				} 
+				100% { 
+					transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+					-webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
 				}
 			}
-		</script>
-</body>
+
+		</style>
+		<script src="js/splash/bootstrap.min.js"></script>
+		<!--script src="js/splash/timeout.js"></script-->
+	</head>
+
+	<body >
+
+		<!-- Static navbar -->
+		<!--div id="base"-->
+		<div class="navbar navbar-default navbar-static-top" style="background-color:#158CBA;" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					 <center style="color:white;font-size:1.7em;font-weight:bold">Kelompok Linux Arek Suroboyo</center>
+				</div>
+			</div>
+		</div>
+		<!--/div--><!--End of ID Base-->
+
+
+		<!--div class="container">
+			
+			<!-- Main component for a primary marketing message or call to action -->
+			
+				<img src="css/splash/image/indonesia.png" class="idn container">
+			<div class="jumbotronku">
+				<center>
+					<h4>Selamat Datang di Aplikasi KLASER Mobile</h4>
+					<div class="spinner">
+						<div class="bounce1 Absolute-Center"></div>
+						<div class="bounce2"></div>
+						<div class="bounce3"></div>
+					</div>
+					Loading ...
+				</center>
+
+			</div>
+			<!--script>
+			var count=0;
+			var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+
+			function timer()
+			{
+				
+				if (count == 0)
+				{
+					alert('press back again');
+					count = 2;
+					//clearInterval(counter);
+					//return;
+				}
+				else{
+					count=count-1;
+					clearInterval(counter);
+					document.getElementById("timer").innerHTML=count + " secs"; // watch for spelling
+					return;
+				}
+			}
+		</script-->
+			
+		<!--/div> <!-- /container -->
+	</body>
 </html>

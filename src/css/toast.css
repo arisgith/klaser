@@ -7,9 +7,10 @@ toast.css may be freely distributed under the MIT license.
 
 #android_toast_container{
 	width: 100%;
-	position: fixed;
+	position: absolute;
 	bottom: 12%;
 	left: 0;
+	z-index:1000;
 }
 
 #android_toast{
