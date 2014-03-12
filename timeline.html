@@ -30,10 +30,11 @@
 		</script>
 		<script>
 		   $(document).ready(function(){
+			   var cbSuccess = false;
 			   $.ajax({
 				   url: 'http://klas.or.id/mob/?text=1&gambar=1&update=3',
 				   dataType: 'jsonp',
-				   timeout:1000,
+				   /*timeout:1000,
 					statusCode: {
 						200: function (response) {
 							//alert('Working!');
@@ -47,8 +48,9 @@
 							$('#KlasFeed').html('<center><h3>Periksa Koneksi Internet Perangkat Anda</h3></center>');
 							
 						}              
-					},
+					},*/
 				   success: function(data){
+					   cbSuccess = true;
 					  var daftar1 = '';
 					   namax = data.update;
 					   hargax = data.text;
@@ -64,6 +66,12 @@
 					   $('#KlasFeed').html(daftar1);
 				   }
 			   });
+			   setTimeout(function(){ 
+					if(!cbSuccess) { 
+						//alert("failed"); 
+						$('#KlasFeed').html('<center><h3>Periksa Koneksi Internet Perangkat Anda <img src="signal.GIF" width="40px"/></h3></center>');
+					} 
+				}, 7000); // assuming 7sec is the max wait time for results
 		   })
 	   </script>
 		<style>
@@ -97,7 +105,7 @@
 			
 			<div role="main" class="ui-content">
 				<div class="ui-body ui-body-a ui-corner-all">
-					<div id="KlasFeed"></div>
+					<div id="KlasFeed"><center>Get Data . . .<img src="9.GIF" width="20px"/></center></div>
 				</div>
 			</div><!-- /content -->
 
