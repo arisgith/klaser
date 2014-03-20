@@ -32,6 +32,7 @@
     //
     function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
+        toast(0);
     }
 
     // device APIs are available
@@ -124,49 +125,35 @@
 				var toast1 = new Android_Toast({content: 'Please check your connection and try again.'});
 			}
 			//disable back button
-			/*window.onload = function () {
-				if (typeof history.pushState === "function") {
-					history.pushState("jibberish", null, null);
-					window.onpopstate = function () {
-						history.pushState('newjibberish', null, null);
-						// Handle the back (or forward) buttons here
-						// Will NOT handle refresh, use onbeforeunload for this.
-						alert("Mohon Maaf, Tombol Back Tidak Berfungsi");
-						//toast function here
-						//toast();
-					};
-				}
-				else {
-					var ignoreHashChange = true;
-					window.onhashchange = function () {
-						if (!ignoreHashChange) {
-							ignoreHashChange = true;
-							window.location.hash = Math.random();
-							// Detect and redirect change here
-							// Works in older FF and IE9
-							// * it does mess with your hash symbol (anchor?) pound sign
-							// delimiter on the end of the URL
-						}
-						else {
-							ignoreHashChange = false;   
-						}
-					};
-				}
-			}*/
-			//from cordova is back button
-			document.addEventListener("deviceready", onDeviceReady, false);
-
-			function onDeviceReady(){
-				document.addEventListener("backbutton", function(e){
-				   if($.mobile.activePage.is('#homepage')){
-					   e.preventDefault();
-					   navigator.app.exitApp();
-					   alert("oke");
-				   }
-				   else {
-					   navigator.app.backHistory()
-				   }
-				}, false);
+			if (typeof history.pushState === "function") {
+				history.pushState("jibberish", null, null);
+				var page_loaded = false;
+				window.onpopstate = function () {
+					if(!page_loaded){
+						page_loaded = true;
+						return false;
+					}
+					history.pushState('newjibberish', null, null);
+					// Handle the back (or forward) buttons here
+					// Will NOT handle refresh, use onbeforeunload for this.
+					toast();
+				};
+			}
+			else {
+				var ignoreHashChange = true;
+				window.onhashchange = function () {
+					if (!ignoreHashChange) {
+						ignoreHashChange = true;
+						window.location.hash = Math.random();
+						// Detect and redirect change here
+						// Works in older FF and IE9
+						// * it does mess with your hash symbol (anchor?) pound sign
+						// delimiter on the end of the URL
+					}
+					else {
+						ignoreHashChange = false;   
+					}
+				};
 			}
 		</script>
 </body>
