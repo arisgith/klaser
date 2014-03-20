@@ -1,43 +1,39 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Open panel on swipe - jQuery Mobile Demos</title>
-		<link rel="shortcut icon" href="./favicon.ico">
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+		<title>jQuery Mobile: Theme Download</title>
+		<link rel="stylesheet" href="css/themes/klaser/klaser_theme.min.css" />
+		<link rel="stylesheet" href="css/themes/klaser/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="css/themes/klaser/jquery.mobile.structure-1.4.2.min.css" />
+		<style>
+			/* Swipe works with mouse as well but often causes text selection. */
+			#demo-page * {
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+			}
+			/* Content styling. */
+			dl { font-family: "Times New Roman", Times, serif; padding: 1em; }
+			dt { font-size: 2em; font-weight: bold; }
+			dt span { font-size: .5em; color: #777; margin-left: .5em; }
+			dd { font-size: 1.25em;	margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px solid #eee; }
+			.back-btn { float: right; margin: 0 2em 1em 0; }
+		</style>
 		
-		<link rel="stylesheet" href="./css/themes/default/jquery.mobile-1.4.0.min.css">
-		<!--link rel="stylesheet" href="./_assets/css/jqm-demos.css"-->
-		
+		<!--script-->
 		<script src="./js/jquery.js"></script>
 		<script src="./_assets/js/index.js"></script>
 		<script src="./js/jquery.mobile-1.4.0.min.js"></script>
 		<!--INI BIAR BISA CLOSE DI ANDROID-->
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 		<script type="text/javascript" charset="utf-8"></script>
-		<script>
-			$( document ).on( "pagecreate", "#demo-page", function() {
-
-				$( document ).on( "swipeleft swiperight", "#demo-page", function( e ) {
-					// We check if there is no open panel on the page because otherwise
-					// a swipe to close the left panel would also open the right panel (and v.v.).
-					// We do this by checking the data that the framework stores on the page element (panel: open).
-					if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
-						if ( e.type === "swipeleft" ) {
-							$( "#right-panel" ).panel( "open" );
-						} else if ( e.type === "swiperight" ) {
-							$( "#left-panel" ).panel( "open" );
-						}
-					}
-				});
-			});
-			// Handle the back button
-			//
-			function onBackKeyDown() {
-				 navigator.app.exitApp();
-			}
-		</script>
+		
+		<!--cross-->
 		<script>
 		   $(document).ready(function(){
 			   var cbSuccess = false;
@@ -70,32 +66,47 @@
 				}, 7000); // assuming 7sec is the max wait time for results
 		   })
 	   </script>
-		<style>
-			/* Swipe works with mouse as well but often causes text selection. */
-			#demo-page * {
-				-webkit-user-select: none;
-				-moz-user-select: none;
-				-ms-user-select: none;
-				-o-user-select: none;
-				user-select: none;
-			}
-			/* Content styling. */
-			dl { font-family: "Times New Roman", Times, serif; padding: 1em; }
-			dt { font-size: 2em; font-weight: bold; }
-			dt span { font-size: .5em; color: #777; margin-left: .5em; }
-			dd { font-size: 1.25em;	margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px solid #eee; }
-			.back-btn { float: right; margin: 0 2em 1em 0; }
-		</style>
-	</head>
+		<script>
+			$( document ).on( "pagecreate", "#demo-page", function() {
 
+				$( document ).on( "swipeleft swiperight", "#demo-page", function( e ) {
+					// We check if there is no open panel on the page because otherwise
+					// a swipe to close the left panel would also open the right panel (and v.v.).
+					// We do this by checking the data that the framework stores on the page element (panel: open).
+					if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
+						if ( e.type === "swipeleft" ) {
+							$( "#right-panel" ).panel( "open" );
+						} else if ( e.type === "swiperight" ) {
+							$( "#left-panel" ).panel( "open" );
+						}
+					}
+				});
+			});
+			// Handle the back button
+			//
+			function onBackKeyDown() {
+				 navigator.app.exitApp();
+			}
+		</script>
+		
+		
+	</head>
 	<body>
 
 		<div data-role="page" id="demo-page">
-
+			
+			<div data-role="panel" id="left-panel" data-theme="a">
+				<ul data-role="listview" data-theme="a" data-divider-theme="a" style="margin-top:-16px;" class="nav-search">
+					<li><a href="home.html" data-ajax="false" class="ui-btn ui-mini ui-btn-icon-left ui-icon-home">Home</a></li>
+					<li><a href="#buaya.html" data-ajax="false" data-inset="true" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">Buaya</a></li>
+					<li><a href="#cangkruan.html" data-ajax="false" data-inset="true" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">Cangkruan</a></li>
+					<li><a href="exit.html" data-ajax="false" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">exit</a></li></li>
+				</ul>
+			</div><!-- /panel left-->
+			
 			<div data-role="header" data-theme="a">
 				<h1>Time Line KLAS</h1>
-				<a href="#left-panel" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Menu</a>
-				<!--a class="ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" href="#left-panel" data-role="button" role="button"></a-->
+				<a class="ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" href="#left-panel" data-role="button" role="button"></a>
 				<a class="ui-btn-right ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" href="#right-panel" data-role="button" role="button"></a>
 				
 			</div><!-- /header -->
@@ -106,21 +117,8 @@
 				</div>
 			</div><!-- /content -->
 
-			<div data-role="panel" id="left-panel" data-theme="a">
-				<ul data-role="listview" data-theme="a" data-divider-theme="a" style="margin-top:-16px;" class="nav-search">
-					<li><a href="timeline.html" data-ajax="false" data-inset="true" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">News</a></li>
-					<li><a href="#buaya.html" data-ajax="false" data-inset="true" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">Buaya</a></li>
-					<li><a href="#cangkruan.html" data-ajax="false" data-inset="true" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">Cangkruan</a></li>
-					<li data-role="list-divider">Other</li>
-					<li><a href="exit.html" data-ajax="false" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">exit</a></li>
-				</ul>
-			</div><!-- /panel left-->
-
-			<div data-role="panel" id="right-panel" data-display="push" data-position="right" data-theme="a">
-				<ul data-role="listview" data-theme="a" data-divider-theme="b" style="margin-top:-16px;">
-					<li><a href="exit.html" data-ajax="false" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">exit</a></li>
-					<li><button onclick="onBackKeyDown()" class="ui-icon-delete">Keluar</button></li>
-				</ul>
+			<div data-role="panel" id="right-panel" data-display="overlay" data-position="right" data-theme="a">
+				<button onclick="onBackKeyDown()" class="ui-btn ui-mini ui-btn-icon-right ui-icon-delete">Keluar</button>
 			</div><!-- /panel right-->
 
 		</div><!-- /page -->
