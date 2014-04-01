@@ -97,7 +97,6 @@
     <div role="main" class="ui-content">
 		<center>
 			<h2>Selamat Datang <font color="red">Klaser</font></h2>
-			
 		</center>
 		<img src="gambar.png" width="70%" style="display: block;margin-left: auto;margin-right: auto;"/>
     </div><!-- /content -->
@@ -121,7 +120,7 @@
 </div><!-- /page -->
 		<script>
 			function toast(){
-				var toast1 = new Android_Toast({content: 'Please check your connection and try again.'});
+				var toast1 = new Android_Toast({content: 'Apa Anda Mau Keluar dari Aplikasi? <a href="#"onclick="onBackKeyDown()" class="toast_link">Ya</a>'});
 			}
 			//disable back button
 			if (typeof history.pushState === "function") {
