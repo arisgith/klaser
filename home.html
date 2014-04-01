@@ -44,6 +44,10 @@
     // Handle the back button
     //
     function onBackKeyDown() {
+		 toast();
+		 //navigator.app.exitApp();
+    }
+    function onBackKeyDown2() {
 		 navigator.app.exitApp();
     }
 
@@ -120,7 +124,7 @@
 </div><!-- /page -->
 		<script>
 			function toast(){
-				var toast1 = new Android_Toast({content: 'Apa Anda Mau Keluar dari Aplikasi? <a href="#"onclick="onBackKeyDown()" class="toast_link">Ya</a>'});
+				var toast1 = new Android_Toast({content: 'Apa Anda Mau Keluar dari Aplikasi? <a href="#"onclick="onBackKeyDown2()" class="toast_link">Ya</a>'});
 			}
 			//disable back button
 			if (typeof history.pushState === "function") {
