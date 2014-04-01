@@ -65,7 +65,9 @@
 			   setTimeout(function(){ 
 					if(!cbSuccess) { 
 						//alert("failed"); 
-						$('#KlasFeed').html('<center><h3>Periksa Koneksi Internet Perangkat Anda <img src="signal.GIF" width="40px"/></h3><a href="timeline.html" data-ajax="false" class="ui-btn ui-mini">Reload Page</a></center>');
+						notice_heading ='<div class="ui-bar ui-bar-a"><center><h3>Gagal Menyambung Ke Server <img src="signal.GIF" width="40px"/></h3></div></center>';
+						notice_body ='<div class="ui-body ui-body-a">Kemungkinan Gagal adalah sebagai berikut<br/>Periksa Koneksi Internet Perangkat Anda<a href="timeline.html" data-ajax="false" class="ui-btn ui-mini">Reload Page</a></div>';
+						$('#KlasFeed').html(notice_heading+notice_body);
 					} 
 				}, 7000); // assuming 7sec is the max wait time for results
 		   })
@@ -102,13 +104,19 @@
 			
 			<div role="main" class="ui-content">
 				<div class="ui-body ui-body-a ui-corner-all">
-					<div id="KlasFeed"><center>Get Data . . .<img src="9.GIF" width="20px"/></center></div>
-				</div>
+					<div class="ui-corner-all custom-corners" id="KlasFeed" >
+						<center>Get Data . . .<img src="9.GIF" width="20px"/></center>
+					</div>
+					<hr>
+				<!--Tweet Buaya-->
+				<a class="twitter-timeline"  href="https://twitter.com/buaya_repo"  data-widget-id="450906658978267137">Tweets by @buaya_repo</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>	
 			</div><!-- /content -->
 
 			<div data-role="panel" id="left-panel" data-theme="a">
 				<ul data-role="listview" data-theme="a" data-divider-theme="a" style="margin-top:-16px;" class="nav-search">
-					<li><a href="timeline.html" data-ajax="false" data-inset="true" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">News</a></li>
+					<li><a href="home.html" data-ajax="false" data-inset="true" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">Home</a></li>
 					<li><a href="#buaya.html" data-ajax="false" data-inset="true" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">Buaya</a></li>
 					<li><a href="#cangkruan.html" data-ajax="false" data-inset="true" class="ui-btn ui-mini ui-btn-icon-left ui-icon-gear">Cangkruan</a></li>
 					<li data-role="list-divider">Other</li>
