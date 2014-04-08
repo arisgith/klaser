@@ -124,7 +124,8 @@
 </div><!-- /page -->
 		<script>
 			function toast(){
-				var toast1 = new Android_Toast({content: 'Apa Anda Mau Keluar dari Aplikasi? <a href="#"onclick="onBackKeyDown2()" class="toast_link">Ya</a>'});
+				//var toast1 = new Android_Toast({content: 'Apa Anda Mau Keluar dari Aplikasi? <a href="#"onclick="onBackKeyDown2()" class="toast_link">Ya</a>'});
+				var toast1 = new Android_Toast({content: 'Apa Anda Mau Keluar dari Aplikasi? <button onclick="onBackKeyDown2()" class="toast_link">Ya</button>'});
 			}
 			//disable back button
 			if (typeof history.pushState === "function") {

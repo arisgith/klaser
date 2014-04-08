@@ -3,8 +3,15 @@ toast.css
 (c) 2013 Jad Joubran, Nader Dagher
 toast.css may be freely distributed under the MIT license.
 */
-
-
+a.toast_link{
+	color:white;
+	text-decoration:none;
+}
+a.toast_link:hover
+{
+	text-decoration:none;
+	color:green;
+}
 #android_toast_container{
 	width: 100%;
 	position: absolute;
